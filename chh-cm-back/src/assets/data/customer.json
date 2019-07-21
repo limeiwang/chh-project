@@ -1,0 +1,93 @@
+{
+  "tableColumn": [
+    {
+      "prop": "name",
+      "label": "姓名"
+    },
+    {
+      "prop": "age",
+      "label": "年龄"
+    },
+    {
+      "prop": "sex",
+      "label": "性别"
+    },
+    {
+      "prop": "phone",
+      "label": "电话"
+    }
+  ],
+  "editform": {
+    "goodsTypeNo": "",
+    "goodsType": "",
+    "goodsName": "",
+    "goodsUnit": "",
+    "goodsModel": "",
+    "goodsSpec": "",
+    "stockPrice": "",
+    "goodsPrice": "",
+    "supName": "",
+    "goodsAddTime": ""
+  },
+  "addform": {
+    "goodsTypeNo": "",
+    "goodsType": "",
+    "goodsName": "",
+    "goodsUnit": "",
+    "goodsModel": "",
+    "goodsSpec": "",
+    "stockPrice": "",
+    "goodsPrice": "",
+    "supName": "",
+    "goodsAddTime": ""
+  },
+  "rules": {
+    "goodsName": [
+      {
+        "required": true,
+        "message": "请输入商品名",
+        "trigger": "blur"
+      }
+    ],
+    "goodsType": [
+      {
+        "required": true,
+        "message": "请输选择类型",
+        "trigger": "blur"
+      }
+    ],
+    "goodsModel": [
+      {
+        "required": true,
+        "message": "请输入型号",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "units": [
+    {
+      "value": "件",
+      "label": "件"
+    },
+    {
+      "value": "盒",
+      "label": "盒"
+    },
+    {
+      "value": "条",
+      "label": "条"
+    },
+    {
+      "value": "瓶",
+      "label": "瓶"
+    },
+    {
+      "value": "桶",
+      "label": "桶"
+    },
+    {
+      "value": "袋",
+      "label": "袋"
+    }
+  ]
+}

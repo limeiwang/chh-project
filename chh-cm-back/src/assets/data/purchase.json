@@ -1,0 +1,112 @@
+{
+  "tableColumn": [
+    {
+      "prop": "goodsNo",
+      "label": "商品编号"
+    },
+    {
+      "prop": "goodsType",
+      "label": "商品分类"
+    },
+    {
+      "prop": "goodsName",
+      "label": "商品名"
+    },
+    {
+      "prop": "goodsMill",
+      "label": "供应商名"
+    },
+    {
+      "prop": "goodsSpec",
+      "label": "规格"
+    },
+    {
+      "prop": "goodsNum",
+      "label": "采购数量"
+    },
+    {
+      "prop": "goodsPrice",
+      "label": "价格"
+    }
+  ],
+  "editform": {
+    "goodsTypeNo": "",
+    "goodsType": "",
+    "goodsName": "",
+    "goodsUnit": "",
+    "goodsModel": "",
+    "goodsSpec": "",
+    "stockPrice": "",
+    "goodsPrice": "",
+    "supName": "",
+    "goodsAddTime": ""
+  },
+  "addform": {
+    "goodsTypeNo": "",
+    "goodsType": "",
+    "goodsName": "",
+    "goodsUnit": "",
+    "goodsModel": "",
+    "goodsSpec": "",
+    "stockPrice": "",
+    "goodsPrice": "",
+    "supName": "",
+    "goodsAddTime": ""
+  },
+  "rules": {
+    "goodsNo": [
+      {
+        "required": true,
+        "message": "请输入商品编号",
+        "trigger": "blur"
+      }
+    ],
+    "goodsName": [
+      {
+        "required": true,
+        "message": "请输入商品名",
+        "trigger": "blur"
+      }
+    ],
+    "goodsNum": [
+      {
+        "required": true,
+        "message": "请输入采购数量",
+        "trigger": "blur"
+      }
+    ],
+    "goodsPrice": [
+      {
+        "required": true,
+        "message": "请输入价格",
+        "trigger": "blur"
+      }
+    ]
+  },
+  "units": [
+    {
+      "value": "件",
+      "label": "件"
+    },
+    {
+      "value": "盒",
+      "label": "盒"
+    },
+    {
+      "value": "条",
+      "label": "条"
+    },
+    {
+      "value": "瓶",
+      "label": "瓶"
+    },
+    {
+      "value": "桶",
+      "label": "桶"
+    },
+    {
+      "value": "袋",
+      "label": "袋"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+.footer-icon i {
+  background: url(../assets/css_sprites.png) no-repeat;
+  background-size: 80px auto;
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin: 0 auto;
+}
+.footer-icon i.home {
+  background-position: 0 -28px;
+}
+
+.footer-icon i.sorts {
+  background-position: -28px -28px;
+}
+
+.footer-icon i.cart {
+  background-position: -56px -28px;
+}
+
+.footer-icon i.mine {
+  background-position: -28px -56px;
+}
+
+.footer-icon.active i.home {
+  background-position: 0 0;
+}
+
+.footer-icon.active i.sorts {
+  background-position: -28px 0;
+}
+
+.footer-icon.active i.cart {
+  background-position:  -56px 0;
+}
+
+.footer-icon.active i.mine {
+  background-position: 0 -56px;
+}
