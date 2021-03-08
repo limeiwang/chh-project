@@ -57,7 +57,7 @@
     </el-form>
     <!-- 表格 -->
     <el-table :data="dataList"
-              v-loading="dataListLoading"
+              v-loading="loading"
               @selection-change="selectionChangeHandle"
               max-height="450"
               style="width: 100%;">
@@ -112,12 +112,13 @@
     <!-- 新增 / 修改 -->
     <add-or-update v-if="addOrUpdateVisible"
                    ref="addOrUpdate"
-                   @refreshDataList="getDataList">
+                   @success="getDataList">
     </add-or-update>
   </div>
 </template>
 
 <script>
+import { list, del } from '@/api/purchase.js'
 import tableItems from '@/assets/data/purchase.json'
 import AddOrUpdate from './add-or-update'
 export default {
@@ -130,123 +131,42 @@ export default {
         goodsNo: '',
         goodsType: ''
       },
-      dataList: [{
-        id: '1',
-        goodsNo: '001',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '2',
-        goodsNo: '002',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '3',
-        goodsNo: '003',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '4',
-        goodsNo: '004',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '5',
-        goodsNo: '005',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '6',
-        goodsNo: '006',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '7',
-        goodsNo: '007',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '8',
-        goodsNo: '008',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '9',
-        goodsNo: '009',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }, {
-        id: '9',
-        goodsNo: '010',
-        goodsType: '佛香',
-        goodsName: '檀香',
-        goodsMill: '河北省保定市檀香制作商',
-        goodsSpec: '1/500克',
-        goodsNum: '100件',
-        stockPrice: '10',
-        goodsPrice: '50'
-      }],
+      code: null,
+      name: null,
+      type: null,
+      dataList: [],
       pageIndex: 1,
       pageSize: 10,
       totalPage: 0,
-      dataListLoading: false,
+      loading: false,
       dataListSelections: [],
       addOrUpdateVisible: false
     }
   },
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     AddOrUpdate
+  },
+  mounted () {
+    this.getDataList()
   },
   methods: {
     // 获取数据列表
     getDataList () {
-      this.dataListLoading = true
+      this.loading = true
+      list({
+        code: this.filters.goodsNo,
+        name: this.filters.goodsName,
+        type: this.filters.goodsType,
+        pageIndex: this.pageIndex,
+        pageSize: this.pageSize
+      }).then(res => {
+        let data = res.data
+        this.dataList = data.data
+        this.loading = false
+        // this.pageIndex = data.pageIndex
+        // this.pageSize = data.pageSize
+        // this.totalPage = data.totalPage
+      })
     },
     handleKey () {
       this.getDataList()
@@ -328,16 +248,26 @@ export default {
 
     },
     // 删除
-    handleDel () {
+    handleDel (row) {
+      console.log(row)
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning',
         center: true
       }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
+        this.loading = true
+        del({
+          id: row.id
+        }).then(res => {
+          let data = res.data
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          })
+          this.loading = false
+          this.getDataList()
+          console.log(data)
         })
       }).catch(() => {
         this.$message({

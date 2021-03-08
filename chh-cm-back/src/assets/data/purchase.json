@@ -1,31 +1,31 @@
 {
   "tableColumn": [
     {
-      "prop": "goodsNo",
+      "prop": "code",
       "label": "商品编号"
     },
     {
-      "prop": "goodsType",
+      "prop": "type",
       "label": "商品分类"
     },
     {
-      "prop": "goodsName",
+      "prop": "name",
       "label": "商品名"
     },
     {
-      "prop": "goodsMill",
+      "prop": "supplier",
       "label": "供应商名"
     },
     {
-      "prop": "goodsSpec",
+      "prop": "spec",
       "label": "规格"
     },
     {
-      "prop": "goodsNum",
+      "prop": "count",
       "label": "采购数量"
     },
     {
-      "prop": "goodsPrice",
+      "prop": "price",
       "label": "价格"
     }
   ],

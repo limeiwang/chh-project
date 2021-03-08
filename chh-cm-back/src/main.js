@@ -5,7 +5,7 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/icons'
-import './mock'
+// import './mock'
 import '@/assets/scss/index.scss'
 // 引入表单验证
 import VeeValidate, { Validator } from 'vee-validate'

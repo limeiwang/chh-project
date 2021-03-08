@@ -52,8 +52,8 @@ export default {
   data () {
     return {
       form: {
-        name: '',
-        password: ''
+        name: 'admin',
+        password: 'admin'
       }
     }
   },
@@ -62,14 +62,19 @@ export default {
       this.$validator.validate().then(result => {
         if (result) {
           login(this.form).then(res => {
-            // console.log('res:', res);
-            if (res.data.status === 1) {
+            let data = res.data
+            if (data.code === 0) {
               // 如果登录成功则跳转我index页面
+              this.$message({
+                message: data.msg,
+                type: 'success',
+                duration: 3000
+              })
               this.$router.push('/home')
             } else {
               // 使用element-ui的message组件，显示登录报错信息
               this.$message({
-                message: res.data.message,
+                message: data.msg,
                 type: 'error',
                 duration: 5000
               })

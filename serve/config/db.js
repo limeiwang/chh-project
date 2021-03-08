@@ -6,8 +6,8 @@ var connection = mysql.createConnection({
     host: 'localhost',
     prot: 3306,
     user: 'root',
-    password: '',
-    database: 'chenghui_data'
+    password: '111111',
+    database: 'chenghui_system'
 })
 
 connection.connect( (error) => {

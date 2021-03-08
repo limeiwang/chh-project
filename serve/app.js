@@ -4,8 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
+var apiRouter = require('./api/router');
 
 var app = express();
 
@@ -28,8 +29,8 @@ app.use('*', function(req, res, next){
   res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With"); // 允许获取额外的header头信息
   next();
 })
-// app.use('/', indexRouter);
-app.use('/api', usersRouter);
+app.use('/', indexRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

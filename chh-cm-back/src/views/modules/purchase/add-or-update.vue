@@ -8,13 +8,13 @@
              :rules="rules"
              ref="dataForm">
       <el-form-item label="商品编号"
-                    prop="goodsNo">
-        <el-input v-model="dataForm.goodsNo"
+                    prop="code">
+        <el-input v-model="dataForm.code"
                   auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="商品分类"
-                    prop="goodsType">
-        <el-select v-model="dataForm.goodsType"
+                    prop="type">
+        <el-select v-model="dataForm.type"
                    placeholder="请选择">
           <el-option v-for="item in options"
                      :key="item.value"
@@ -24,26 +24,26 @@
         </el-select>
       </el-form-item>
       <el-form-item label="商品名"
-                    prop="goodsName">
-        <el-input v-model="dataForm.goodsName"
+                    prop="name">
+        <el-input v-model="dataForm.name"
                   :min="0"
                   :max="100"></el-input>
       </el-form-item>
       <el-form-item label="供应商名"
-                    prop="goodsMill">
-        <el-input v-model="dataForm.goodsMill"></el-input>
+                    prop="supplier">
+        <el-input v-model="dataForm.supplier"></el-input>
       </el-form-item>
       <el-form-item label="规格"
-                    prop="goodsSpec">
-        <el-input v-model="dataForm.goodsSpec"></el-input>
+                    prop="spec">
+        <el-input v-model="dataForm.spec"></el-input>
       </el-form-item>
       <el-form-item label="采购数量"
-                    prop="goodsNum">
-        <el-input v-model="dataForm.goodsNum"></el-input>
+                    prop="count">
+        <el-input v-model="dataForm.count"></el-input>
       </el-form-item>
       <el-form-item label="价格"
-                    prop="goodsPrice">
-        <el-input v-model="dataForm.goodsPrice"></el-input>
+                    prop="price">
+        <el-input v-model="dataForm.price"></el-input>
       </el-form-item>
     </el-form>
     <div slot="footer"
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import { add } from '@/api/purchase.js'
 import tableItems from '@/assets/data/purchase.json'
 export default {
   data () {
@@ -63,13 +64,13 @@ export default {
       visible: false,
       dataForm: {
         id: '',
-        goodsNo: '',
-        goodsType: '',
-        goodsName: '',
-        goodsMill: '',
-        goodsSpec: '',
-        goodsNum: '',
-        goodsPrice: ''
+        code: '',
+        type: '',
+        name: '',
+        supplier: '',
+        spec: '',
+        count: '',
+        price: ''
       },
       options: [{
         value: '佛香',
@@ -87,7 +88,13 @@ export default {
       this.visible = true
     },
     dataFormSubmit () {
-
+      add(this.dataForm).then(res => {
+        let data = res.data
+        if (data.code === 0) {
+          this.$emit('success')
+          this.visible = false
+        }
+      })
     }
   }
 }

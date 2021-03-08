@@ -1,13 +1,14 @@
 var conf = require('../../config/db.js');
 
 const selectUser = (option) => {
-    const sql = 'select * from user where ' + Object.keys(options)[0] + '=' + Object.values(options)[0];
+    const {name, password} = option;
+    const sql = 'select * from user where username=? and password=?';
     return new Promise((resolve, reject) => {
-        conf.query(sql, [], (err, data) => {
+        conf.query(sql, [name, password], (err, data) => {
             if (err) {
                 reject(err);
             } else {
-                resolve({ ...data[0] })
+                resolve(data)
             }
         })
     })

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Message } from 'element-ui'
 
 // 这个baseUrl要根据实际情况进行改变
-axios.defaults.baseURL = '/'
+axios.defaults.baseURL = '/api'
 axios.defaults.headers.common['Content-Type'] = 'application/json; charset=UTF-8'
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
