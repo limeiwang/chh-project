@@ -8,7 +8,7 @@
 正在开发中。。。
 ## 技术栈
 **前端**
-- vue全家桶
+- vue-cli
 - element-ui
 - axios
 - mockjs
